@@ -1,5 +1,7 @@
 [data-value-printout] {
-  background: url(./preload.gif) left top no-repeat;
+  background: url(./preload-light-grey.gif) left top no-repeat;
   opacity: 1;
   /*text-indent:-99999px;*/
 }
+h1[data-value-printout] {
+  background: url(./preload-light-blue.gif) left top no-repeat;}

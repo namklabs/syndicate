@@ -11,8 +11,9 @@
       function(){
       
 	// do animation
-	el.text( el.original.slice(0, el.step++) );
-	if( el.step <= el.len ){
+	el.text( el.original.slice(0, el.step) );
+        el.step += el.speed;
+	if( el.step <= el.len + el.speed ){
 	  printout( el );
 	} else {
         // stop animation and tidy up
@@ -30,7 +31,7 @@
     $t["step"] = 0;
     $t["len"] = $t["original"].length;
     $t["speed"] = sp + Math.floor( Math.random() * (.20 * sp) ) - Math.floor( Math.random() * (.20 * sp) );
-    $t["delay"] = Math.floor( Math.random() * ( 500 * sp ) );
+    $t["delay"] = Math.floor( Math.random() * ( 200 * sp ) );
     $t["dtype"] = $t.css("display"); // used to set the display css type back to normal after the effect is complete.
 
 //alert( $t.delay );
