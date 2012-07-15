@@ -15,6 +15,7 @@
 	if( el.step <= el.len ){
 	  printout( el );
 	} else {
+        // stop animation and tidy up
           el.css({"display":el.dtype});
         }
 
@@ -29,12 +30,28 @@
     $t["step"] = 0;
     $t["len"] = $t["original"].length;
     $t["speed"] = sp + Math.floor( Math.random() * (.20 * sp) ) - Math.floor( Math.random() * (.20 * sp) );
-    $t["delay"] = Math.floor( Math.random() * ( 175 * sp ) );
+    $t["delay"] = Math.floor( Math.random() * ( 500 * sp ) );
     $t["dtype"] = $t.css("display"); // used to set the display css type back to normal after the effect is complete.
 
-//alert( $t.speed );
+//alert( $t.delay );
+
+    // things to do to each printout object
+    $t.css({
+      "height": $t.height(),
+      "width": $t.width(),
+      "display": "block",
+      "opacity":1,
+      "text-indent":-99999,
+    });
+    
 
     window.setTimeout( function(){ 
+    // things to do before the animation
+      $t.css({
+	"opacity":0,
+        "text-indent":0,
+	"background-image":"none"
+      });
 
       $t.animate({
         opacity: 1.0
@@ -44,11 +61,6 @@
 */
        , 5 );
 
-      $t.css({
-        "height": $t.height(),
-        "width": $t.width(),
-        "display": "block"
-      });
       printout( $t ); 
 
     }, $t.delay );
