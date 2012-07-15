@@ -14,7 +14,9 @@
 	el.text( el.original.slice(0, el.step++) );
 	if( el.step <= el.len ){
 	  printout( el );
-	}
+	} else {
+          el.css({"display":el.dtype});
+        }
 
       }, el.speed );
 
@@ -27,9 +29,29 @@
     $t["step"] = 0;
     $t["len"] = $t["original"].length;
     $t["speed"] = sp + Math.floor( Math.random() * (.20 * sp) ) - Math.floor( Math.random() * (.20 * sp) );
-    $t["delay"] = Math.floor( Math.random() * ( 250 * sp ) );
+    $t["delay"] = Math.floor( Math.random() * ( 175 * sp ) );
+    $t["dtype"] = $t.css("display"); // used to set the display css type back to normal after the effect is complete.
 
-    window.setTimeout( function(){ printout( $t ); }, $t.delay );
+//alert( $t.speed );
+
+    window.setTimeout( function(){ 
+
+      $t.animate({
+        opacity: 1.0
+      }
+/*
+       , $t.len * $t.speed );
+*/
+       , 5 );
+
+      $t.css({
+        "height": $t.height(),
+        "width": $t.width(),
+        "display": "block"
+      });
+      printout( $t ); 
+
+    }, $t.delay );
 
   });
 
